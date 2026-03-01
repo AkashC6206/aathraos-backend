@@ -11,5 +11,5 @@ export ULTRALYTICS_ENV="True"
 # Use the PORT provided by Render, or default to 10000
 PORT=${PORT:-10000}
 
-echo "Starting Backend API on port $PORT..."
-python3 -m uvicorn api:app --host 0.0.0.0 --port $PORT --log-level info
+echo "Starting Fake Backend API on port $PORT..."
+python3 fake_api.py
