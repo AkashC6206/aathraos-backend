@@ -1,7 +1,12 @@
+import os
+# Fix for Render writable filesystem and Ultralytics hanging on cloud servers
+os.environ["YOLO_CONFIG_DIR"] = "/tmp/Ultralytics"
+os.environ["YOLO_VERBOSE"] = "False"
+
 from fastapi import FastAPI, BackgroundTasks, HTTPException
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 import threading
-import os
 from typing import Optional
 
 from cv_counter import TrafficCounter
@@ -11,6 +16,10 @@ app = FastAPI(
     title="Traffic & Crowd Real-time Analytics API",
     description="API to control and query object tracking models for real-time CCTV feeds."
 )
+
+@app.get("/", include_in_schema=False)
+async def root():
+    return {"status": "ok", "message": "Backend is running"}
 
 # Global configuration / state
 active_tracker: Optional[TrafficCounter] = None
