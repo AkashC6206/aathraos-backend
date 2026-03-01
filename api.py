@@ -2,6 +2,8 @@ import os
 # Fix for Render writable filesystem and Ultralytics hanging on cloud servers
 os.environ["YOLO_CONFIG_DIR"] = "/tmp/Ultralytics"
 os.environ["YOLO_VERBOSE"] = "False"
+os.environ["YOLO_UPDATE_CHECK"] = "False"
+os.environ["YOLO_VERSION_CHECK"] = "False"
 
 from fastapi import FastAPI, BackgroundTasks, HTTPException
 from fastapi.responses import RedirectResponse
