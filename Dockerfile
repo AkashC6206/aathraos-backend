@@ -1,8 +1,9 @@
-# Use Python 3.12 slim as a lightweight base image
-FROM python:3.12-slim
+# Use Python 3.10 slim as a lightweight base image for better ML wheel compatibility
+FROM python:3.10-slim
 
-# Install system dependencies required by OpenCV (even headless) and YOLO
+# Install system dependencies required by OpenCV and build tools for ML wheels
 RUN apt-get update && apt-get install -y \
+    build-essential \
     libglib2.0-0 \
     libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
